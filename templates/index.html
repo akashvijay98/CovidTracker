@@ -1,0 +1,29 @@
+<html>
+    <body>
+    <h1> data </h1>
+
+   
+    <table>
+        
+  
+
+    {% for item in all %}
+    <tr>
+        <td> {{item.state}} </td>
+
+        <td> {{item.date}} </td>
+        <td> {{item.ci}} </td>
+        <td> {{item.cf}} </td>
+        <td> {{item.cured}} </td>
+        <td> {{item.deaths}} </td>
+       
+    </tr>
+
+
+             
+
+        
+    {% endfor %}
+</table>
+<body>
+</html>
