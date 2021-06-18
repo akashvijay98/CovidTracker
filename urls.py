@@ -9,6 +9,6 @@ urlpatterns = [
     path('', views.simple_upload),
     path('index/',views.index),
     path('input/',views.input),
-    path(),
-    path()
+    path('update/',views.update),
+    path('destroy/',view.destroy)
 ]
