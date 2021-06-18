@@ -7,5 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('export/', views.export),
     path('', views.simple_upload),
-    path('index/',views.index)
+    path('index/',views.index),
+    path('input/',views.input),
+    path(),
+    path()
 ]
