@@ -31,12 +31,12 @@ def update(request, id):
     form = covidData(request.POST, instance = prod)  
     if form.is_valid():  
         form.save()  
-        return redirect("/show")  
+        return redirect("/index")  
     return render(request, 'edit.html', {'prod': prod})  
 def destroy(request, id):  
     prod = covid_data.objects.get(id=id)  
     prod.delete()  
-    return redirect("/show")  
+    return redirect("/index")  
 
 def export(request):
     data_resource = dataResource()
