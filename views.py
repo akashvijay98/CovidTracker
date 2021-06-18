@@ -3,11 +3,40 @@ from .models import covid_data
 from django.http import HttpResponse
 from .resources import dataResource
 from tablib import Dataset
+from .forms import covidData
 # Create your views here.
 
 def index(request):
     items = covid_data.objects.all
     return render(request,'index.html', {'all':items})
+
+
+def input(request):
+    if request.method=='POST':
+        form=covidData(request.POST)
+        if form.is_valid():  
+            try:  
+                form.save()  
+                return redirect('/index')  
+            except:  
+                pass
+            
+          
+    else:  
+        form = covidData()  
+    return render(request,'index.html',{'form':form})  
+
+def update(request, id):  
+    prod = coviddata.objects.get(id=id)  
+    form = covidData(request.POST, instance = prod)  
+    if form.is_valid():  
+        form.save()  
+        return redirect("/show")  
+    return render(request, 'edit.html', {'prod': prod})  
+def destroy(request, id):  
+    prod = coviddata.objects.get(id=id)  
+    prod.delete()  
+    return redirect("/show")  
 
 def export(request):
     data_resource = dataResource()
@@ -15,6 +44,9 @@ def export(request):
     response = HttpResponse(dataset.xls, content_type='application/vnd.ms-excel')
     response['Content-Disposition'] = 'attachment; filename="persons.xls"'
     return response
+
+
+
 
 def simple_upload(request):
     if request.method == 'POST':
