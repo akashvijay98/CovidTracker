@@ -27,14 +27,14 @@ def input(request):
     return render(request,'index.html',{'form':form})  
 
 def update(request, id):  
-    prod = coviddata.objects.get(id=id)  
+    prod = covid_data.objects.get(id=id)  
     form = covidData(request.POST, instance = prod)  
     if form.is_valid():  
         form.save()  
         return redirect("/show")  
     return render(request, 'edit.html', {'prod': prod})  
 def destroy(request, id):  
-    prod = coviddata.objects.get(id=id)  
+    prod = covid_data.objects.get(id=id)  
     prod.delete()  
     return redirect("/show")  
 
